@@ -20,5 +20,6 @@ RUN dotnet build CalendarApi/Calendar.Api.csproj
 
 FROM microsoft/dotnet:2.1-runtime AS runtime
 WORKDIR /app
+RUN ls /app/CalendarApi/bin
 COPY /app/CalendarApi/bin/Debug/netcoreapp2.1/. ./
 ENTRYPOINT ["dotnet", "Calendar.Api.dll"]
