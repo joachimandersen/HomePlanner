@@ -1,12 +1,21 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
-WORKDIR src/Calendar/Calendar.Api
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build-env
 
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY src/Calendar/Calendar.Api/*.csproj ./Calendar.Api/
 RUN dotnet restore
 
-RUN dotnet publish -c Release -o out
+# copy and build everything else
+COPY Calendar.Api/. ./Calendar.Api/
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
-WORKDIR src/Calendar/Calendar.Api
-COPY --from=build-env /src/out .
-ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+RUN dotnet build
+
+FROM build AS publish
+WORKDIR /app/dotnetapp
+RUN dotnet publish -o out
+
+FROM microsoft/dotnet:2.0-runtime AS runtime
+WORKDIR /app
+COPY --from=publish /app/dotnetapp/out ./
+ENTRYPOINT ["dotnet", "dotnetapp.dll"]
