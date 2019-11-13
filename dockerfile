@@ -14,11 +14,11 @@ COPY src/Calendar/Calendar.Api/. ./CalendarApi/
 
 RUN dotnet build CalendarApi/Calendar.Api.csproj
 
-FROM build AS publish
-WORKDIR /app/CalendarApi
-RUN dotnet publish -o out
+#FROM build AS publish
+#WORKDIR /app/CalendarApi
+#RUN dotnet publish -o out
 
 FROM microsoft/dotnet:2.1-runtime AS runtime
 WORKDIR /app
-COPY --from=publish /app/CalendarApi/out ./
+COPY /app/CalendarApi/out ./
 ENTRYPOINT ["dotnet", "Calendar.Api.dll"]
