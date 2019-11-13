@@ -4,7 +4,7 @@ WORKDIR /app
 
 # copy csproj and restore as distinct layers
 COPY src/Calendar/Calendar.Api/Calendar.Api.csproj ./CalendarApi/
-RUN PWD
+RUN pwd
 RUN ls
 RUN dotnet restore
 
