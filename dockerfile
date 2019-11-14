@@ -4,12 +4,12 @@ EXPOSE 80
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /app
-COPY "src/Calendar/Calendar.Api/Calendar.Api.csproj", "Calendar.Api/"
-RUN dotnet restore "Calendar.Api/Calendar.Api.csproj"
-RUN dotnet build "Calendar.Api/Calendar.Api.csproj" -c Release -o /app
+COPY src/Calendar/Calendar.Api/*.csproj ./CalendarApi/
+RUN dotnet restore "CalendarApi/Calendar.Api.csproj"
+RUN dotnet build "CalendarApi/Calendar.Api.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "Calendar.Api/Calendar.Api.csproj" -c Release -o /app
+RUN dotnet publish "CalendarApi/Calendar.Api.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
