@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:2.1 AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
 WORKDIR /app
 COPY src/Calendar/Calendar.Api/*.csproj ./CalendarApi/
 RUN dotnet restore "CalendarApi/Calendar.Api.csproj"
