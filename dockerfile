@@ -4,7 +4,7 @@ EXPOSE 80
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY ["Calendar/Calendar.Api/*.csproj", "Calendar.Api/"]
+COPY "Calendar/Calendar.Api/Calendar.Api.csproj", "Calendar.Api/"
 RUN dotnet restore "Calendar.Api/Calendar.Api.csproj"
 COPY . .
 WORKDIR "src/Calendar.Api"
