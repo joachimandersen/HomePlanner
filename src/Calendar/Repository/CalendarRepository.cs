@@ -1,11 +1,11 @@
-using Calendar.Api.Model.DataContext;
-using Calendar.Api.Model;
+using Calendar.Model.DataContext;
+using Calendar.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dapper;
 using System.Linq;
 
-namespace Calendar.Api.Repository
+namespace Calendar.Repository
 {
     public interface ICalendarRepository
     {

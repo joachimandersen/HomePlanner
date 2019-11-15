@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Calendar.Api.Model;
-using Calendar.Api.Repository;
+using Calendar.Model;
+using Calendar.Repository;
 
-namespace Calendar.Api.Controllers
+namespace Calendar.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

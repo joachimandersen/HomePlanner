@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Calendar.Api.Model
+namespace Calendar.Model
 {
     public class CalendarEntity
     {

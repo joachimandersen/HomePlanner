@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Calendar.Api
+namespace Calendar
 {
     public class Startup
     {
@@ -26,8 +26,8 @@ namespace Calendar.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IConfiguration>(Configuration);
-            services.AddTransient<Calendar.Api.Model.DataContext.ICalendarContext, Calendar.Api.Model.DataContext.CalendarContext>();
-            services.AddTransient<Calendar.Api.Repository.ICalendarRepository, Calendar.Api.Repository.CalendarRepository>();
+            services.AddTransient<Calendar.Model.DataContext.ICalendarContext, Calendar.Model.DataContext.CalendarContext>();
+            services.AddTransient<Calendar.Repository.ICalendarRepository, Calendar.Repository.CalendarRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

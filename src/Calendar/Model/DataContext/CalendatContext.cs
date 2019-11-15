@@ -2,7 +2,7 @@ using System.Data;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 
-namespace Calendar.Api.Model.DataContext
+namespace Calendar.Model.DataContext
 {
     public interface ICalendarContext
     {

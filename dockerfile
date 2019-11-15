@@ -1,18 +1,20 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.1 AS base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
-WORKDIR /app
-COPY src/Calendar/Calendar.Api/*.csproj ./CalendarApi/
-RUN dotnet restore "CalendarApi/Calendar.Api.csproj"
-COPY src/Calendar/Calendar.Api/. ./CalendarApi/
-RUN dotnet build "CalendarApi/Calendar.Api.csproj" -c Release -o /app
+WORKDIR /src
+COPY src/Calendar/Calendar.csproj ./Calendar/
+RUN dotnet restore "Calendar/Calendar.csproj"
+COPY . .
+WORKDIR /src/Calendar
+RUN dotnet build "Calendar.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "CalendarApi/Calendar.Api.csproj" -c Release -o /app
+RUN dotnet publish "Calendar.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Calendar.Api.dll"]
+ENTRYPOINT ["dotnet", "Calendar.dll"]

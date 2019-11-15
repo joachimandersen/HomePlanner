@@ -1,6 +1,6 @@
 using System;
 
-namespace Calendar.Api.Model
+namespace Calendar.Model
 {
     public class Item
     {
