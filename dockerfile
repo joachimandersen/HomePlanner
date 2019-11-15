@@ -7,7 +7,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
 WORKDIR /src
 RUN pwd
 RUN ls
-COPY ["Calendar/Calendar.csproj", "Calendar/"]
+COPY ["./Calendar/Calendar.csproj", "./Calendar/"]
 RUN dotnet restore "Calendar/Calendar.csproj"
 RUN ls
 COPY . .
