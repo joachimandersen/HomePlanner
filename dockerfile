@@ -5,7 +5,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
 WORKDIR /src
-COPY Calendar.csproj Calendar/
+COPY src/Calendar/Calendar.csproj Calendar/
 RUN dotnet restore "Calendar/Calendar.csproj"
 COPY . Calendar/
 WORKDIR /src/Calendar
